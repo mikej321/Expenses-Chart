@@ -34,6 +34,7 @@ body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     background: var(--cream);
     font-family: var(--font_fam);
 }
@@ -41,8 +42,8 @@ body {
 .container {
     display: grid;
     grid-template-areas: "balance" "chart";
-    max-width: 37.5rem;
-    margin-top: 8rem;
+    width: 100%;
+    padding-inline: 1rem;
 }
 
 @media screen and (min-width: 600px) {
