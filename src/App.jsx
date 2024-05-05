@@ -37,7 +37,6 @@ const Chart = ({ todayDate }) => {
   the chart. It starts at 6, since the week starts on Sunday and
   goes back to 0 (first index in the chart) when Monday starts. */
   const daysOfWeekNum = [6, 0, 1, 2, 3, 4, 5];
-  todayDate = 6;
 
   return (
     <main className="chart_section">
