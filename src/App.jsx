@@ -32,6 +32,13 @@ const CustomToolTip = ({ active, payload, label }) => {
 
 const Chart = ({ todayDate }) => {
 
+  /* I tied the days on the chart to the todayDate integer
+  This is because of the order that the days are presented in
+  the chart. It starts at 6, since the week starts on Sunday and
+  goes back to 0 (first index in the chart) when Monday starts. */
+  const daysOfWeekNum = [6, 0, 1, 2, 3, 4, 5];
+  todayDate = 6;
+
   return (
     <main className="chart_section">
       <h1>Spending - Last 7 days</h1>
@@ -40,9 +47,13 @@ const Chart = ({ todayDate }) => {
           <XAxis dataKey="day" axisLine={false} tickLine={false} tickMargin={7} fontSize="12px" />
           <Tooltip cursor={false} content={<CustomToolTip />} wrapperStyle={{ padding: "1rem", background: "hsl(25, 47%, 15%)", borderRadius: "8px", color: "hsl(33, 100%, 98%)", fontWeight: "bold", fontSize: "1.2rem"}} position={{ y: -10 }} offset={-30} />
           <Bar dataKey="amount" fill="hsl(10, 79%, 65%)" radius={4}>
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={ todayDate === index + 1 ? "hsl(10, 79%, 65%)" : "hsl(186, 34%, 60%)" } />
-            ))}
+            {
+              data.map((entry, index) => {
+                return (
+                  <Cell key={`cell-${index}`} fill={ daysOfWeekNum[todayDate] === index ? "hsl(10, 79%, 65%)" : "hsl(186, 34%, 60%)" } />
+                )
+              })
+            }
           </Bar>
         </BarChart>
       </ResponsiveContainer>
